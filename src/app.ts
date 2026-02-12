@@ -26,6 +26,22 @@ export const createApp = () => {
   
   app.use(express.json({ limit: "1mb" }));
 
+  // Root route for API info
+  app.get("/", (_req, res) => {
+    res.json({
+      name: "Election Live API",
+      status: "running",
+      version: "1.0.0",
+      endpoints: {
+        health: "/api/health",
+        seats: "/api/seats",
+        seatWinners: "/api/seats/winners",
+        candidates: "/api/seats/:seatId/candidates"
+      },
+      documentation: "API routes are available under /api"
+    });
+  });
+
   app.use("/api", routes);
   return app;
 };
