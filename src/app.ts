@@ -42,6 +42,9 @@ export const createApp = () => {
     });
   });
 
+  // Mount routes at both root and /api for compatibility
   app.use("/api", routes);
+  app.use("/", routes);
+  
   return app;
 };
